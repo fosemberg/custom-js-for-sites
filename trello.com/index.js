@@ -1,4 +1,16 @@
-(function () {
+// ==UserScript==
+// @name         minify-height-for-cards-with-high-image
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  minify-height-for-card-with-high-image
+// @author       You
+// @match        https://trello.com/b/FUDvynVW/my
+// @grant        none
+// ==/UserScript==
+
+(function() {
+  'use strict';
+
   function addCss(cssCode) {
     var styleElement = document.createElement("style");
     styleElement.type = "text/css";
@@ -22,4 +34,4 @@ a.list-card.js-member-droppable.is-covered.ui-droppable {
 }
 `
   addCss(css)
-})()
+})();
