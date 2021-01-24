@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         minify-height-for-cards-with-high-image
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  minify-height-for-card-with-high-image
 // @author       You
 // @match        https://trello.com/b/FUDvynVW/my
