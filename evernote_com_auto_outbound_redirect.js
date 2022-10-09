@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Removes confirmation of the transition to an external link from the web evernote.com
-// @author       fosemberg@gmail.com
+// @author       https://github.com/fosemberg
 // @match        https://www.evernote.com/OutboundRedirect.action*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=evernote.com
 // @grant        none
