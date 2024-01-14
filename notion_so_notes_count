@@ -32,7 +32,7 @@
     notesCoutElement.style.zIndex = '999999';
     notesCoutElement.style.fontSize = '20px';
     notesCoutElement.style.color = 'rgb(155, 155, 155)';
-    notesCoutElement.style.padding = '5px';
+    notesCoutElement.style.padding = '16px';
     notesCoutElement.style.backgroundColor = 'rgb(25, 25, 25)';
 
     document.body.appendChild(notesCoutElement);
