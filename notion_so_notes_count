@@ -47,6 +47,8 @@ const getNotesCount = () => {
   if (element) {
     return element.childNodes.length - 2;
   }
+  const elementWithCountInTable = document.querySelector("#notion-app > div > div:nth-child(1) > div > div:nth-child(2) > main > div > div:nth-child(5) > div > div > div.notion-selectable.notion-collection_view_page-block > div.pseudoSelection > div > div > div:nth-child(2) > div > span:nth-child(2)");
+  if (elementWithCountInTable) return elementWithCountInTable.innerHTML;
   return 0;
 }
 
