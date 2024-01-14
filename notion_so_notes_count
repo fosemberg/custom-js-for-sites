@@ -1,10 +1,24 @@
+// ==UserScript==
+// @name         New Userscript
+// @namespace    http://tampermonkey.net/
+// @version      2024-01-14
+// @description  try to take over the world!
+// @author       You
+// @match        https://www.notion.so/*/*
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
 if (window.updateNotesCountInterval) {
-  clearInterval(updateNotesCountInterval);
+  clearInterval(window.updateNotesCountInterval);
 }
 
-NOTES_COUNT_ELEMENT_ID = 'notesCoutElement';
+const NOTES_COUNT_ELEMENT_ID = 'notesCoutElement';
 
-getNotesCoutElement = () => {
+const getNotesCoutElement = () => {
   let notesCoutElement = document.getElementById(NOTES_COUNT_ELEMENT_ID);
   if (notesCoutElement) {
     document.body.removeChild(notesCoutElement);
@@ -26,9 +40,9 @@ getNotesCoutElement = () => {
   return notesCoutElement;
 }
 
-notesCoutElement = getNotesCoutElement();
+const notesCoutElement = getNotesCoutElement();
 
-getNotesCount = () => {
+const getNotesCount = () => {
   const element = document.querySelector('.notion-list-view > .notion-selectable.notion-collection_view_page-block > div');
   if (element) {
     return element.childNodes.length - 2;
@@ -36,10 +50,12 @@ getNotesCount = () => {
   return 0;
 }
 
-updateNotesCount = () => {
+const updateNotesCount = () => {
   getNotesCount();
   notesCoutElement.innerHTML = getNotesCount();
 }
 
 updateNotesCount();
-updateNotesCountInterval = setInterval(updateNotesCount, 250);
+window.updateNotesCountInterval = setInterval(updateNotesCount, 250);
+
+})();
