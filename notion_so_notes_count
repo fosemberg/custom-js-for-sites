@@ -1,0 +1,45 @@
+if (window.updateNotesCountInterval) {
+  clearInterval(updateNotesCountInterval);
+}
+
+NOTES_COUNT_ELEMENT_ID = 'notesCoutElement';
+
+getNotesCoutElement = () => {
+  let notesCoutElement = document.getElementById(NOTES_COUNT_ELEMENT_ID);
+  if (notesCoutElement) {
+    document.body.removeChild(notesCoutElement);
+  }
+
+  notesCoutElement = document.createElement('div');
+  notesCoutElement.id = 'notesCoutElement';
+  notesCoutElement.style.position = 'absolute';
+  notesCoutElement.style.top = '0';
+  notesCoutElement.style.left = '0';
+  notesCoutElement.style.zIndex = '999999';
+  notesCoutElement.style.fontSize = '20px';
+  notesCoutElement.style.color = 'rgb(155, 155, 155)';
+  notesCoutElement.style.padding = '5px';
+  notesCoutElement.style.backgroundColor = 'rgb(25, 25, 25)';
+
+  document.body.appendChild(notesCoutElement);
+
+  return notesCoutElement;
+}
+
+notesCoutElement = getNotesCoutElement();
+
+getNotesCount = () => {
+  const element = document.querySelector('.notion-list-view > .notion-selectable.notion-collection_view_page-block > div');
+  if (element) {
+    return element.childNodes.length - 2;
+  }
+  return 0;
+}
+
+updateNotesCount = () => {
+  getNotesCount();
+  notesCoutElement.innerHTML = getNotesCount();
+}
+
+updateNotesCount();
+updateNotesCountInterval = setInterval(updateNotesCount, 250);
