@@ -10,54 +10,55 @@
 // ==/UserScript==
 
 (function() {
-    'use strict';
+  'use strict';
 
-if (window.updateNotesCountInterval) {
-  clearInterval(window.updateNotesCountInterval);
-}
-
-const NOTES_COUNT_ELEMENT_ID = 'notesCoutElement';
-
-const getNotesCoutElement = () => {
-  let notesCoutElement = document.getElementById(NOTES_COUNT_ELEMENT_ID);
-  if (notesCoutElement) {
-    document.body.removeChild(notesCoutElement);
+  if (window.updateNotesCountInterval) {
+    clearInterval(window.updateNotesCountInterval);
   }
 
-  notesCoutElement = document.createElement('div');
-  notesCoutElement.id = 'notesCoutElement';
-  notesCoutElement.style.position = 'absolute';
-  notesCoutElement.style.top = '0';
-  notesCoutElement.style.left = '0';
-  notesCoutElement.style.zIndex = '999999';
-  notesCoutElement.style.fontSize = '20px';
-  notesCoutElement.style.color = 'rgb(155, 155, 155)';
-  notesCoutElement.style.padding = '5px';
-  notesCoutElement.style.backgroundColor = 'rgb(25, 25, 25)';
+  const NOTES_COUNT_ELEMENT_ID = 'notesCoutElement';
 
-  document.body.appendChild(notesCoutElement);
+  const getNotesCoutElement = () => {
+    let notesCoutElement = document.getElementById(NOTES_COUNT_ELEMENT_ID);
+    if (notesCoutElement) {
+      document.body.removeChild(notesCoutElement);
+    }
 
-  return notesCoutElement;
-}
+    notesCoutElement = document.createElement('div');
+    notesCoutElement.id = 'notesCoutElement';
+    notesCoutElement.style.position = 'absolute';
+    notesCoutElement.style.right = '0';
+    notesCoutElement.style.bottom = '52px';
+    notesCoutElement.style.zIndex = '999999';
+    notesCoutElement.style.fontSize = '20px';
+    notesCoutElement.style.color = 'rgb(155, 155, 155)';
+    notesCoutElement.style.padding = '5px';
+    notesCoutElement.style.backgroundColor = 'rgb(25, 25, 25)';
 
-const notesCoutElement = getNotesCoutElement();
+    document.body.appendChild(notesCoutElement);
 
-const getNotesCount = () => {
-  const element = document.querySelector('.notion-list-view > .notion-selectable.notion-collection_view_page-block > div');
-  if (element) {
-    return element.childNodes.length - 2;
+    return notesCoutElement;
   }
-  const elementWithCountInTable = document.querySelector("#notion-app > div > div:nth-child(1) > div > div:nth-child(2) > main > div > div:nth-child(5) > div > div > div.notion-selectable.notion-collection_view_page-block > div.pseudoSelection > div > div > div:nth-child(2) > div > span:nth-child(2)");
-  if (elementWithCountInTable) return elementWithCountInTable.innerHTML;
-  return 0;
-}
 
-const updateNotesCount = () => {
-  getNotesCount();
-  notesCoutElement.innerHTML = getNotesCount();
-}
+  const notesCoutElement = getNotesCoutElement();
 
-updateNotesCount();
-window.updateNotesCountInterval = setInterval(updateNotesCount, 250);
+  const getNotesCount = () => {
+    const element = document.querySelector('.notion-list-view > .notion-selectable.notion-collection_view_page-block > div');
+    if (element) {
+      return element.childNodes.length - 2;
+    }
+    const elementWithCountInTable = document.querySelector("#notion-app > div > div:nth-child(1) > div > div:nth-child(2) > main > div > div:nth-child(5) > div > div > div.notion-selectable.notion-collection_view_page-block > div.pseudoSelection > div > div > div:nth-child(2) > div > span:nth-child(2)");
+    if (elementWithCountInTable) return elementWithCountInTable.innerHTML;
+    return 0;
+  }
 
+  const updateNotesCount = () => {
+    const newNotesCount = getNotesCount();
+    if (String(newNotesCount) !== notesCoutElement.innerHTML) {
+      notesCoutElement.innerHTML = newNotesCount;
+    }
+  }
+
+  updateNotesCount();
+  window.updateNotesCountInterval = setInterval(updateNotesCount, 250);
 })();
