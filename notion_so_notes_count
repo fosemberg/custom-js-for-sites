@@ -18,29 +18,29 @@
 
   const NOTES_COUNT_ELEMENT_ID = 'notesCoutElement';
 
-  const getNotesCoutElement = () => {
-    let notesCoutElement = document.getElementById(NOTES_COUNT_ELEMENT_ID);
-    if (notesCoutElement) {
-      document.body.removeChild(notesCoutElement);
+  const getNotesCountElement = () => {
+    let notesCountElement = document.getElementById(NOTES_COUNT_ELEMENT_ID);
+    if (notesCountElement) {
+      document.body.removeChild(notesCountElement);
     }
 
-    notesCoutElement = document.createElement('div');
-    notesCoutElement.id = 'notesCoutElement';
-    notesCoutElement.style.position = 'absolute';
-    notesCoutElement.style.right = '0';
-    notesCoutElement.style.bottom = '52px';
-    notesCoutElement.style.zIndex = '999999';
-    notesCoutElement.style.fontSize = '20px';
-    notesCoutElement.style.color = 'rgb(155, 155, 155)';
-    notesCoutElement.style.padding = '16px';
-    notesCoutElement.style.backgroundColor = 'rgb(25, 25, 25)';
+    notesCountElement = document.createElement('div');
+    notesCountElement.id = 'notesCoutElement';
+    notesCountElement.style.position = 'absolute';
+    notesCountElement.style.right = '0';
+    notesCountElement.style.bottom = '52px';
+    notesCountElement.style.zIndex = '999999';
+    notesCountElement.style.fontSize = '20px';
+    notesCountElement.style.color = 'rgb(155, 155, 155)';
+    notesCountElement.style.padding = '16px';
+    notesCountElement.style.backgroundColor = 'rgb(25, 25, 25)';
 
-    document.body.appendChild(notesCoutElement);
+    document.body.appendChild(notesCountElement);
 
-    return notesCoutElement;
+    return notesCountElement;
   }
 
-  const notesCoutElement = getNotesCoutElement();
+  const notesCoutElement = getNotesCountElement();
 
   const getNotesCount = () => {
     const element = document.querySelector('.notion-list-view > .notion-selectable.notion-collection_view_page-block > div');
